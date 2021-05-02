@@ -10,13 +10,46 @@ export default {
   components: { Nav },
 };
 </script>
-import '@/src/assets/style.scss'
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$font: "Poppins", sans-serif;
+
+$primary: #e2002c;
+h1 {
+  font-family: $font;
+  font-weight: 500;
+}
+h3 {
+  font-family: $font;
+  font-weight: 200;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+.link:visited {
+  text-decoration: none;
+  color: black;
+}
+.link:hover {
+  text-decoration: none;
+  color: $primary;
+}
+.link:active {
+  text-decortation: none;
+  color: $primary;
 }
 </style>

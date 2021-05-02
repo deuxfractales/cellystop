@@ -1,14 +1,14 @@
 <template>
   <div class="home">
+    <Hero />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import Hero from "@/components/homepage/Hero.vue";
 export default {
   name: "Home",
-  components: {
-  },
+  components: { Hero },
 };
 </script>
