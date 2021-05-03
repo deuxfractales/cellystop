@@ -1,5 +1,6 @@
 <template>
   <div class="hero">
+    <!-- TOP PART -->
     <div class="top">
       <div class="leftCol">
         <h1 class="heroTitle">
@@ -15,6 +16,41 @@
       </div>
       <img src="@/assets/girl.svg" class="heroPic" alt="" />
     </div>
+    <!--BOTTOM OF THE HERO -->
+    <div class="bot">
+      <h2 class="botTitle">
+        Shopping & Stress don't go together. Save an average of 25% on your
+        monthly bill
+      </h2>
+      <div class="botTilesHolder">
+        <!--TILE 1-->
+        <div class="tile">
+          <img class="tileImg" src="@/assets/phone-icon.svg" width="124px" />
+          <p class="imgCaption">Pick Your device</p>
+        </div>
+        <img src="@/assets/arrow-icon.svg" alt="arrow icon" />
+
+        <!--TILE 2-->
+        <div class="tile">
+          <img class="tileImg" src="@/assets/cart-icon.svg" width="124px" />
+          <p class="imgCaption">Shop The Best Deals In Your Area</p>
+        </div>
+        <img src="@/assets/arrow-icon.svg" alt="arrow icon" />
+
+        <!--TILE 3-->
+        <div class="tile">
+          <img class="tileImg" src="@/assets/check-icon.png" width="124px" />
+          <p class="imgCaption">Select your option</p>
+        </div>
+        <img src="@/assets/arrow-icon.svg" alt="arrow icon" />
+
+        <!--TILE 4-->
+        <div class="tile">
+          <img class="tileImg" src="@/assets/money-icon.svg" width="124px" />
+          <p class="imgCaption">Save On Your Bill</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 <style scoped lang="scss">
@@ -23,10 +59,55 @@ $font: "Poppins", sans-serif;
 
 .hero {
   margin: 20px;
-  height: 520px;
+  height: auto;
   width: 80%;
   display: flex;
   flex-direction: column;
+}
+.bot {
+  background-color: $primary;
+  height: 350px;
+  width: 100%;
+  margin-top: -100px;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.botTitle {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.botTilesHolder {
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+}
+.tileImg {
+  padding: 40px;
+  background: white;
+  border-radius: 40px;
+}
+.imgCaption {
+  font-family: $font;
+  font-weight: 500;
+  font-size: 16px;
+  color: white;
+}
+h2 {
+  color: white;
+  font-size: 20px;
 }
 .top {
   display: flex;

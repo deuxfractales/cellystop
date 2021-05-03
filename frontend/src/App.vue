@@ -31,6 +31,11 @@ h1 {
   font-family: $font;
   font-weight: 500;
 }
+h2 {
+  font-family: $font;
+  font-weight: 600;
+}
+
 h3 {
   font-family: $font;
   font-weight: 200;
