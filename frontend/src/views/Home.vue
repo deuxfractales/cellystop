@@ -12,3 +12,12 @@ export default {
   components: { Hero },
 };
 </script>
+<style lang="scss">
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+}
+</style>
