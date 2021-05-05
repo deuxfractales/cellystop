@@ -68,7 +68,7 @@ $font: "Poppins", sans-serif;
   background-color: $primary;
   height: 350px;
   width: 100%;
-  margin-top: -100px;
+  margin-top: -20%;
   border-radius: 50px;
   display: flex;
   flex-direction: column;
@@ -76,23 +76,24 @@ $font: "Poppins", sans-serif;
   align-items: center;
 }
 .botTitle {
-  margin-top: 20px;
+  margin-top: 0.3%;
   margin-bottom: 20px;
 }
 .botTilesHolder {
-  height: 200px;
+  height: auto;
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
 }
 .tile {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  justify-content: flex-start;
   width: 200px;
+  padding-top: 2%;
 }
 .tileImg {
   padding: 40px;
@@ -104,6 +105,7 @@ $font: "Poppins", sans-serif;
   font-weight: 500;
   font-size: 16px;
   color: white;
+  padding-top: 5%;
 }
 h2 {
   color: white;
@@ -117,10 +119,10 @@ h2 {
   width: 60%;
 }
 .heroTitle {
-  width: 90%;
+  width: 100%;
 }
 .heroPara {
-  margin-top: 30px;
+  margin-top: 1%;
 }
 h1 {
   font-size: 42px;
@@ -141,6 +143,7 @@ button {
   border-radius: 5px;
 }
 .heroPic {
+  height: 100%;
 }
 .redHead {
   color: $primary;
