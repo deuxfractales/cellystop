@@ -58,7 +58,7 @@ $primary: #e2002c;
 $font: "Poppins", sans-serif;
 
 .hero {
-  margin: 20px;
+  margin: 3%;
   height: auto;
   width: 80%;
   display: flex;
@@ -68,7 +68,7 @@ $font: "Poppins", sans-serif;
   background-color: $primary;
   height: 350px;
   width: 100%;
-  margin-top: -20%;
+  margin-top: -15%;
   border-radius: 50px;
   display: flex;
   flex-direction: column;
@@ -120,9 +120,12 @@ h2 {
 }
 .heroTitle {
   width: 100%;
+  font-size: 3vw;
 }
 .heroPara {
   margin-top: 1%;
+  font-weight: 200;
+  width: 80%;
 }
 h1 {
   font-size: 42px;
@@ -138,12 +141,13 @@ button {
   justify-content: center;
   padding: 10px;
   background-color: white;
-  margin-top: 30px;
+  margin-top: 5%;
   border: 3px solid black;
   border-radius: 5px;
 }
 .heroPic {
   height: 100%;
+  padding-top:3%;
 }
 .redHead {
   color: $primary;
