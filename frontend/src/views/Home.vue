@@ -18,6 +18,6 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
 }
 </style>

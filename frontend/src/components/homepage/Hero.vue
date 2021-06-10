@@ -81,10 +81,10 @@ $font: "Poppins", sans-serif;
 }
 .botTilesHolder {
   height: auto;
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
 }
 .tile {
   display: flex;

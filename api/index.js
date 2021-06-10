@@ -5,10 +5,11 @@ const fastify = require('fastify')({
 fastify.get('/', async (request, reply) => {
   return { hello: 'world' }
 })
+fastify.register(require('./logic-bell.js'))
 
 const start = async () => {
   try {
-    await fastify.listen(3000)
+    await fastify.listen(3020)
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
