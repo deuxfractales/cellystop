@@ -1,15 +1,31 @@
 const fastify = require('fastify')({
   logger: true
 })
-
+//      MAIN ROUTE
 fastify.get('/', async (request, reply) => {
   return { hello: 'world' }
 })
-fastify.register(require('./logic-bell.js'))
 
+//      CORS
+fastify.register(require('fastify-cors'), {
+  // put your options here
+  origin: '*',
+  methods: ['GET,PUT,POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+});
+//      REGISTER ROUTES
+fastify
+  .register(require('./logic-bell.js'))
+  .register(require('./db/dealerInput.js'))
+
+
+
+
+//      START SERVER
 const start = async () => {
   try {
-    await fastify.listen(3020)
+    await fastify.listen(3000)
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
