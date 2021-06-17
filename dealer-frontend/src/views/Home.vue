@@ -21,19 +21,28 @@
         </button>
       </div>
     </div>
-  <div class="content-holder">
-    <div class="form">
-      <div class="input-form-holder">
-        <ul>  
-        <li v-for="field in fields" :key="field">
-          {{field}}
-        </li> 
-        </ul>
-        <!--<h2>Customer Type</h2>-->
-        <!--<h2>Customer Type</h2>-->
+    <div class="content-holder">
+      <div class="form">
+        <div class="w-layout-grid fieldgrid">
+          <div
+            v-for="field in fields"
+            :key="field"
+            id="w-node-_2a1387f3-28b1-8967-592b-b591976d4a75-4b061c7c"
+            class="fieldholder"
+          >
+            <h2>{{ field.field }}</h2>
+          </div>
+          <select v-for="field in fields" :key="field">
+            <option disabled value="">Please select one</option>
+            <option v-for="(row) in rows.row1" :key="row">
+            {{row}}
+            </option>
+          </select>
+        </div>
       </div>
     </div>
-  </div>
+    <!--<h2>Customer Type</h2>-->
+    <!--<h2>Customer Type</h2>-->
   </div>
 </template>
 
@@ -47,13 +56,21 @@ export default {
     return {
       page: null,
       fields: [],
-      inputValues: []
+      entryType: [],
+      rows :{
+      row1:[1,2,3,4],
+      row2:[5,6,7,8],
+      row3:[9,10],
+      row4:[],
+      row5:[],
+      row6:[],
+      }
     };
   },
   methods: {
     switchPage(pageNumber) {
       this.page = pageNumber;
-      console.log(this.page);
+      //console.log(this.page);
       this.populateData();
     },
     populateData() {
@@ -64,11 +81,23 @@ export default {
         axios
           .get("http://127.0.0.1:3000/assets/dealerInput")
           .then((r) => {
-            //this.reply = r.dat
-            let reply = r.data
-            this.fields = Object.keys(reply)
-            this.inputValues = Object.values(reply)
-            console.log(this.fields, this.inputValues)
+            //this.reply = r.daa
+            let reply = r.data;
+            console.log(reply)
+            for (const line in reply) {
+              
+              console.log(reply[line])
+              let pair = {
+                field: `${line}`,
+                input: reply[line]
+              }
+                
+               
+              this.fields.push(pair)
+            }
+
+              //console.log(this.fields)
+            //console.log(reply)
           })
           .catch(function (error) {
             console.log(error);

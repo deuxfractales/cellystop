@@ -19,10 +19,15 @@ async function dealerInput(fastify, options){
     const collection = database.collection('dealerInput')
     
     const query = {}
+    const exclude = {_id:0}
 
-    const fields = await collection.findOne(query)
-    console.log(fields)
-    allFields = fields
+    const docs = await collection.find().project(exclude)
+    await docs.forEach(doc => {
+      console.log(doc)  
+      allFields = doc
+    })
+    //console.log(allFields)
+    //allFields = fields
 
   }   
     catch (e) {
