@@ -1,6 +1,13 @@
 <template>
   <div>
-    <div class="header">CELLYSTOP-ADMIN</div>
+    <div class="header">CELLYSTOP-ADMIN
+      <select v-model="provider">
+        <option disabled value="">Please select one</option>
+        <option>Bell</option>
+        <option>Telus</option>
+        <option>Rogers</option>
+      </select>
+    </div>
     <div class="content-holder">
       <div class="w-layout-grid grid">
         <button v-on:click="switchPage(1)">
@@ -22,88 +29,171 @@
       </div>
     </div>
     <div class="content-holder">
-      <div class="form">
-        <div class="w-layout-grid fieldgrid">
-          <div
-            v-for="field in fields"
-            :key="field"
-            id="w-node-_2a1387f3-28b1-8967-592b-b591976d4a75-4b061c7c"
-            class="fieldholder"
-          >
-            <h2>{{ field.field }}</h2>
-          </div>
-          <select v-for="field in fields" :key="field">
-            <option disabled value="">Please select one</option>
-            <option v-for="(row) in rows.row1" :key="row">
-            {{row}}
-            </option>
-          </select>
+      <div v-if="this.page == 1">
+    <div class="form">
+      <div class="w-layout-grid leftgridcolumn">
+        <div class="griddata" v-for="field in fields" :key="field">
+          {{field}}
         </div>
       </div>
+      <div class="w-layout-grid rightgridcolumn">
+        <div class="griddata">
+          <select v-model="s1">
+            <option disabled value="">Please select one</option>
+            <option v-for="options in entryType" :key="options">{{options}}</option>
+          </select>
+        </div>
+        <div class="griddata">
+          <select v-model="s2">
+            <option disabled value="">Please select one</option>
+            <option v-for="options in customerType" :key="options">{{options}}</option>
+          </select>
+        </div>
+        <div class="griddata">
+          <select v-model="s3">
+            <option disabled value="">Please select one</option>
+            <option v-for="options in planType" :key="options">{{options}}</option>
+          </select>
+        </div>
+        <div class="griddata">
+          <select v-model="s4">
+            <option disabled value="">Please select one</option>
+            <option v-for="options in termType" :key="options">{{options}}</option>
+          </select>
+        </div>
+        <div class="griddata">
+          <select v-model="s5" >
+            <option disabled value="">Please select one</option>
+            <option v-for="options in features" :key="options">{{options}}</option>
+          </select>
+        </div>
+        <div class="griddata">
+          <select v-model="s6">
+            <option disabled value="">Please select one</option>
+            <option v-for="options in dataType" :key="options">{{options}}</option>
+          </select>
+        </div>
+
+      </div>
     </div>
+    </div>
+    <div v-else class="planholder"> 
+      <div class="plandata" v-for="plan in plans" :key="plan">
+        
+        <ul>
+        <li>{{plan.entryType}}</li>
+        <li>{{plan.customerType}}</li>
+        <li>{{plan.planType}}</li>
+        <li>{{plan.termType}}</li>
+        <li>{{plan.features}}</li>
+        <li>{{plan.dataType}}</li>
+        </ul>
+         
+      </div>
+    </div>
+  </div>
     <!--<h2>Customer Type</h2>-->
     <!--<h2>Customer Type</h2>-->
   </div>
 </template>
 
 <script>
-const axios = require("axios").default;
+import axios from "axios"
 // @ is an alias to /src
 export default {
   name: "Home",
   components: {},
   data() {
     return {
+      s1:null,
+      s2:null,
+      s3:null,
+      s4: null,
+      s5: null,
+      s6: null,
       page: null,
       fields: [],
       entryType: [],
-      rows :{
-      row1:[1,2,3,4],
-      row2:[5,6,7,8],
-      row3:[9,10],
-      row4:[],
-      row5:[],
-      row6:[],
-      }
+      customerType: [],
+      planType: [],
+      termType: [],
+      features:[],
+      dataType: [],
+      plans: null,
+      provider: null
     };
+  },
+  watch: {
+    s6(){
+      if(this.s1 == "Plan"){
+        console.log("sending new plan to database")
+
+      }else if(this.s1 == "Discount"){
+        console.log("sedning new discount to database")
+      }else(
+        console.log("sending new Port Credit to database")
+      )
+      this.sendData();
+    },
+    page() {
+      if(this.page == 2){
+        this.getPlans();
+      }
+    }
   },
   methods: {
     switchPage(pageNumber) {
       this.page = pageNumber;
-      //console.log(this.page);
-      this.populateData();
+      this.populateForm()
     },
-    populateData() {
-      //const reply = () => {}
-      if (this.page == 1) {
-        //reply()
-
+    populateForm() {
         axios
-          .get("http://127.0.0.1:3000/assets/dealerInput")
-          .then((r) => {
-            //this.reply = r.daa
-            let reply = r.data;
-            console.log(reply)
-            for (const line in reply) {
-              
-              console.log(reply[line])
-              let pair = {
-                field: `${line}`,
-                input: reply[line]
-              }
-                
-               
-              this.fields.push(pair)
-            }
+          .get('http://localhost:3000/assets/dealerInput')
+          .then(response => {
+            const allOptions = Object.entries(response.data)
+            const optionText = Object.keys(response.data)
+            optionText.forEach(text => {
+              this.fields.push(text)
+            })
 
-              //console.log(this.fields)
-            //console.log(reply)
+            this.entryType = allOptions[0][1]
+            this.customerType = allOptions[1][1]
+            this.planType = allOptions[2][1]
+            this.termType = allOptions[3][1]
+            this.features = allOptions[4][1]
+            this.dataType = allOptions[5][1]
           })
-          .catch(function (error) {
-            console.log(error);
-          });
-      }
+          .catch(function(error){
+            console.log(error)
+          })
+        
     },
+    getPlans() {
+      axios.get(`http://localhost:3000/db/getPlans/${this.provider}`)
+      .then(response => {
+        this.plans = response.data
+        console.log(this.plans)
+      })
+    },
+    sendData() {
+      let postData = {
+        entryType: this.s1,
+        customerType: this.s2,
+        planType: this.s3,
+        termType: this.s4,
+        features: this.s5,
+        dataType: this.s6
+      }
+      axios
+      .post(`http://localhost:3000/db/postPDP/${this.provider}`, postData)
+      .then(response => {
+        console.log(response)
+      })
+      .catch(function(error){
+        console.log(error)
+      })
+    }
+      
   },
 };
 </script>

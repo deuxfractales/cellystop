@@ -75,10 +75,10 @@
   -webkit-flex-direction: row;
   -ms-flex-direction: row;
   flex-direction: row;
-  -webkit-box-pack: start;
-  -webkit-justify-content: flex-start;
-  -ms-flex-pack: start;
-  justify-content: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
   -webkit-box-align: start;
   -webkit-align-items: flex-start;
   -ms-flex-align: start;
@@ -131,6 +131,69 @@
   height: 100px;
 }
 
+.entrynameholder {
+  width: 50%;
+}
+
+.leftgridcolumn {
+  width: 50%;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+}
+
+.griddata {
+  width: 100%;
+  height: 70px;
+}
+
+.rightgridcolumn {
+  width: 50%;
+  -ms-grid-columns: 1fr;
+  grid-template-columns: 1fr;
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+}
+
+.planholder {
+  display: -ms-grid;
+  display: grid;
+  width: 80%;
+  height: auto;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  grid-auto-columns: 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  -ms-grid-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-rows: auto;
+  grid-template-rows: auto;
+}
+
+.plandata {
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  box-shadow: 0 0 17px -2px rgba(93, 93, 93, 0.35);
+}
+
+.body {
+  height: auto;
+}
+
 @media screen and (max-width: 991px) {
   .h1 {
     font-size: 30px;
@@ -162,11 +225,6 @@
 }
 
 #w-node-_04327146-d7ca-0df9-4f6a-a9c12290a1a1-4b061c7c {
-  -ms-grid-column-align: center;
-  justify-self: center;
-}
-
-#w-node-_2a1387f3-28b1-8967-592b-b591976d4a75-4b061c7c {
   -ms-grid-column-align: center;
   justify-self: center;
 }
