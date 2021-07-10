@@ -11,7 +11,6 @@ async function getPlans (fastify, options){
 
     fastify.get('/db/getPlans/:provider', async (req, reply)=>{
         let plans = []
-        console.log(req.params)
         let provider = req.params.provider
         try {
             await client.connect()

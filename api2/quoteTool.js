@@ -1,39 +1,57 @@
 async function quoteTool (fastify, options){
-    let client = null 
-    fastify.addHook('onRequest', async (req, reply) => {
-  
-        const password = "adminben"
-        const MongoClient = require('mongodb').MongoClient;
-        const uri = `mongodb+srv://admin:${password}@celly-stop.42ifg.mongodb.net?retryWrites=true&w=majority`;
-        client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-        console.log("connected to dB")
-        })
-
+   const axios = require('axios') 
+    const providers = ["Bell"]
+    let foundPlans = []
+    let foundDiscounts = []
     
-    fastify.get('/quote', async (req, reply) => {
-        let 
-        try {
-            await client.connect()
-            const database = client.db('Providers')
-            const collection = database.collection('Bell')
 
-            const query = {}
-            const exclude = {_id:0}
+    fastify.get('/quote', async (req, reply) => {
+        let ct =  req.query.ct
         
-            const docs = await collection.find().project(exclude)
-            await docs.forEach(doc => {
-              //console.log(doc)  
-              plans.push(doc)
-            
+        
+        try {
+            const urlBuilder = (a,x) => {
+                return new Promise ((resolve, reject) =>{
+
+                axios.get(`http://localhost:3001/${a}/${x}`)
+                .then(function(response) {
+                   resolve(response.data)
+                })
+                .catch(function(error){
+                    console.log(error)
+                })
+                })
+            }
+
+            providers.forEach(async (x) => {
+                
+                let a = "plans"
+                await urlBuilder(a,x)
+                .then((response) => {
+                    foundPlans = response
+                    //console.log(foundPlans)
+                })
+                a = "discounts"
+                await urlBuilder(a,x)
+                .then((response) => {
+                    foundDiscounts = response
+                })
+
+                if(foundDiscounts != null){
+                    console.log("buidling plans")
+                }
+
             })
-            console.log(plans)
+
+
         } catch (error) {
            console.log(error) 
+
         } finally {
-            await client.close()
+
         }
-        return plan
         
+       return (foundPlans)
     })
 }
 
