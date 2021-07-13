@@ -1,6 +1,14 @@
 const fastify = require('fastify')({
     logger: true
   })
+  
+fastify.register(require('fastify-cors'), {
+  // put your options here
+  origin: 'http://localhost:8080',
+  methods: ['GET,PUT,POST'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+});
   const autoload = require('fastify-autoload')
   const path = require('path'); 
   fastify.get('/', async (request, reply) => {
@@ -17,10 +25,18 @@ const fastify = require('fastify')({
   fastify.register(autoload, {
     dir: path.join(__dirname, 'plans')
   })
+  
+  fastify.register(autoload, {
+    dir: path.join(__dirname, 'providers')
+  })
+  
+  fastify.register(autoload, {
+    dir: path.join(__dirname, 'websiteAssets')
+  })
 
   fastify.register(autoload, {
     dir: path.join(__dirname, 'discounts')
-  })
+   })
   
   const start = async () => {
     try {
