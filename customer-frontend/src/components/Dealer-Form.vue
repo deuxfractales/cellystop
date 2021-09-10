@@ -35,7 +35,7 @@ export default {
           })  
         }
       }
-      //console.log(selectedTemp.value) 
+      console.log(selectedTemp.value) 
      };
 
       const setStyles = (selectedObject) => {
@@ -82,8 +82,19 @@ export default {
                 }),
               ]),
             ]);
+
           }),
         ]),
+
+      h("button",{
+        onClick: (/*event*/) => {
+          if (selectedTemp.value.length !== rows.value.length) {
+            console.log("You Need To Complete The Form Before Submitting!")
+          } else {
+            console.log("Form Successfully Submitted")
+          }
+        }
+      },"Submit Plan")
       ]);
   },
 };
