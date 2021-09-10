@@ -88,10 +88,24 @@ export default {
 
       h("button",{
         onClick: (/*event*/) => {
-          if (selectedTemp.value.length !== rows.value.length) {
-            console.log("You Need To Complete The Form Before Submitting!")
+          //TODO: Switch from mock submit to real submit
+          // if (selectedTemp.value.length !== rows.value.length) {
+          //   console.log("You Need To Complete The Form Before Submitting!")
+          // } else  {
+          //   console.log("Form Successfully Submitted")
+          // }
+          if (selectedTemp.value === 0){
+            console.log("Please Select Something")
           } else {
-            console.log("Form Successfully Submitted")
+            axios.post("http://localhost:3001/addPlans", {})
+              .then(function(response){
+                if(response.status === 200){
+                  console.log("Successfully Added Plan to the Database")
+                }
+              })
+              .catch(function (error) {
+                console.log(error)
+              })
           }
         }
       },"Submit Plan")
