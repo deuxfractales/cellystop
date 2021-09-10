@@ -97,7 +97,7 @@ export default {
           if (selectedTemp.value === 0){
             console.log("Please Select Something")
           } else {
-            axios.post("http://localhost:3001/addPlans", {})
+            axios.post("http://localhost:3001/addPlans", selectedTemp.value)
               .then(function(response){
                 if(response.status === 200){
                   console.log("Successfully Added Plan to the Database")
